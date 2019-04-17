@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const routes = require('./src/routes/router');
 
-const Connection = require('./src/connect');
+
+const Connection = require('./src/common/db');
 
 // allow cross orgin request
 app.use(cors());
@@ -21,7 +21,7 @@ Connection.then(() =>{
 })
 
 
-app.use('/routes', routes);
+// app.use('/routes', routes);
 
 
 //app running on 4000 port
