@@ -1,8 +1,8 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
 const app = express();
-let bodyParser = require('body-parser');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const routes = require('./src/routes/router');
 
 const Connection = require('./src/connect');
 
@@ -10,6 +10,7 @@ const Connection = require('./src/connect');
 app.use(cors());
 
 //parse data
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
  
 //connection to database
@@ -18,6 +19,10 @@ Connection.then(() =>{
 }).catch((err) => {
     console.log(err)
 })
+
+
+app.use('/routes', routes);
+
 
 //app running on 4000 port
 app.listen(4000, () => {

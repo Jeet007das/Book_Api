@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 var validator = require('validator');
 
 
-var UserSchema = new mongoose.Schema({
+var UserSchema = new Schema({
  name:{
     type:String,
     required:true
@@ -11,17 +12,24 @@ var UserSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    trim: true
+    trim: true,
+    lowercase:true
   },
   password: {
     type: String,
     required: true,
   },
+  createdDate:{
+    type:Date,
+    default:Date.now
+  },
   role:{
-      type:String,
+      type:Array,
       required:true
   }
 });
+
+UserSchema.set('toJSON', {virtuals:true});
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
