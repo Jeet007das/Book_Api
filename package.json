@@ -1,0 +1,19 @@
+{
+  "name": "com.book",
+  "version": "1.0.0",
+  "description": "This is basically simple Book Store.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.2",
+    "validator": "^10.11.0"
+  }
+}
