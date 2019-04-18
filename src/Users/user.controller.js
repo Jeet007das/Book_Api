@@ -14,9 +14,7 @@ router.post('/register',  register);
 module.exports = router;
 
 function authenticate(req, res, next) {
-    console.log("inside controller");
-    console.log(req.body);
-    
+   
     userService.authenticate(req.body)
         .then(user => user ? res.status(201).json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
         .catch(err => next(err));

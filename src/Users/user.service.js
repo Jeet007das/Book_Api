@@ -15,13 +15,16 @@ module.exports = {
 
 async function authenticate({ email, password }) {
     const user = await User.findOne({ email });
- 
     if (user && bcrypt.compareSync(password, user.password)) {
-        const { password, ...userWithoutPassword } = user.toObject();
-        const token = jwt.sign({ sub: user.id }, config.secret);
+        const { password, token, ...userWithoutPassword } = user.toObject();
+        const web_token = jwt.sign({ sub: user.id }, config.secret);
+        const updateUser = await User.findById(user.id);
+        (user.token).push(web_token)
+        Object.assign(updateUser, user);
+        updateUser.save();
         return {
             ...userWithoutPassword,
-            token
+            web_token
         };
     }
     
@@ -31,9 +34,9 @@ async function authenticate({ email, password }) {
 //     return await User.find().select('-hash');
 // }
 
-// async function getById(id) {
-//     return await User.findById(id).select('-hash');
-// }
+async function getById(id) {
+    return await User.findById(id).select('-hash');
+}
 
 async function create(userParam) {
 
