@@ -1,30 +1,25 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
+const jwt = require('./src/common/jwt');
 
+//parse data
 
-const Connection = require('./src/common/db');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 
 // allow cross orgin request
 app.use(cors());
 
-//parse data
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
- 
-//connection to database
-Connection.then(() =>{
-    console.log("connection successfull");
-}).catch((err) => {
-    console.log(err)
-})
+//bind jwt token
+app.use(jwt())
 
+//bind controllers
+app.use('/users', require('./src/Users/user.controller'));
 
-// app.use('/routes', routes);
-
-
-//app running on 4000 port
-app.listen(4000, () => {
-    console.log('App is running on port 4000');
+// start server
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
+const server = app.listen(port, function () {
+    console.log('Server listening on port ' + port);
 });

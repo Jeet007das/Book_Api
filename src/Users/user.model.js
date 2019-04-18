@@ -23,10 +23,9 @@ var UserSchema = new Schema({
     type:Date,
     default:Date.now
   },
-  role:{
-      type:Array,
-      required:true
-  }
+  token:[{
+    type:String 
+  }]
 });
 
 UserSchema.set('toJSON', {virtuals:true});
