@@ -5,7 +5,9 @@ module.exports = {
    getBooksLists
 };
 
- getBooksLists = async () => {
-    console.log("inside service");
+
+
+async function getBooksLists() {
+    nsole.log("inside service");
     
 }
