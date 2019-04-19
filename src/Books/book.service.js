@@ -92,6 +92,7 @@ module.exports = {
         try{
             let updateBook = await Book.findOneAndUpdate({ _id: book_id },
                 { $inc: {stock_count: -1} });
+                
          return updateBook
         }catch(e){
             throw new Error(e)
