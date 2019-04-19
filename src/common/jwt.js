@@ -12,9 +12,9 @@ function jwt() {
             '/users/register',
             '/books/_getBooksLists',
             '/books/_addNewBook',
-            '/books/:id',
             '/books/_getBookListsById',
-            '/books/_updateBookDetails'
+            '/books/_updateBookDetails',
+            '/books/_deleteBookDetails'
         ]
     });
 
