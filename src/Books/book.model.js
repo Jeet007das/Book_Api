@@ -10,7 +10,7 @@ var BookSchema = new Schema({
     },
   description: {
     type: String,
-    required: true,
+    default:"No Description found"
   },
   author_name: {
     type: String,

@@ -4,6 +4,7 @@ const cors = require('cors');
 var bodyParser = require('body-parser');
 const jwt = require('./src/common/jwt');
 
+
 //parse data
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 
 // allow cross orgin request
 app.use(cors());
+
 
 //bind jwt token
 app.use(jwt())

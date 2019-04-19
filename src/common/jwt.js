@@ -9,16 +9,20 @@ function jwt() {
     return expressJwt({ secret, isRevoked }).unless({
         path: [
             '/users/login',
-            '/users/register'
+            '/users/register',
+            '/books/_getBooksLists',
+            '/books/_addNewBook',
+            '/books/:id',
+            '/books/_getBookListsById',
+            '/books/_updateBookDetails'
         ]
     });
+
 }
+
 
 async function isRevoked(req, payload, done) {
     const user = await userService.getById(payload.sub);
-    console.log(user);
-    
-
     if (!user) {
         return done(null, true);
     }

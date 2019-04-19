@@ -34,7 +34,8 @@ async function authenticate({ email, password }) {
 //     return await User.find().select('-hash');
 // }
 
-async function getById(id) {
+async function getById(id){
+    console.log("inside get service" +id);
     return await User.findById(id).select('-hash');
 }
 
