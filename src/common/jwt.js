@@ -14,7 +14,8 @@ function jwt() {
             '/books/_addNewBook',
             '/books/_getBookListsById',
             '/books/_updateBookDetails',
-            '/books/_deleteBookDetails'
+            '/books/_deleteBookDetails',
+            '/purchase/_buyBook'
         ]
     });
 

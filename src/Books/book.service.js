@@ -25,28 +25,28 @@ module.exports = {
         }
     },
 
-    // _getBooksLists: async () => {
-    //    try{
-    //         const bookLists = await Book.find({});
-    //         return bookLists
-    //     }catch(e){
-    //         throw new Error
-    //     }
-    // },
-
-    _getBook: async (id) => {
-        try {
-
-            const user = User.findById(id.seller_id)
-            if (user && user.role === 'ROLE_ADMIN') {
-                const bookDetails = await Book.findBy({ seller_id: id.seller_id });
-                return bookDetails
-            }
-
-        } catch (e) {
-            throw new Error("Something went wrong")
+    _getBooksLists: async () => {
+       try{
+            const bookLists = await Book.find({});
+            return bookLists
+        }catch(e){
+            throw new Error
         }
     },
+
+    // _getBook: async (id) => {
+    //     try {
+
+    //         const user = User.findById(id.seller_id)
+    //         if (user && user.role === 'ROLE_ADMIN') {
+    //             const bookDetails = await Book.findBy({ seller_id: id.seller_id });
+    //             return bookDetails
+    //         }
+
+    //     } catch (e) {
+    //         throw new Error("Something went wrong")
+    //     }
+    // },
 
     _getBookListsById: async (req, res) => {
         try {
@@ -82,6 +82,17 @@ module.exports = {
         try{
             let deleteBook = await Book.findByIdAndDelete({_id: req.body.id});
             return deleteBook
+        }catch(e){
+            throw new Error(e)
+        }
+        
+    },
+
+    _updateBookStock:async(book_id) =>{
+        try{
+            let updateBook = await Book.findOneAndUpdate({ _id: book_id },
+                { $inc: {stock_count: -1} });
+         return updateBook
         }catch(e){
             throw new Error(e)
         }

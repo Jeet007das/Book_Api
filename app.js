@@ -20,6 +20,7 @@ app.use(jwt())
 //bind controllers
 app.use('/users', require('./src/Users/user.controller'));
 app.use('/books', require('./src/Books/book.controller'));
+app.use('/purchase', require('./src/Purchase/purchase.controller'));
 
 // start server
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
