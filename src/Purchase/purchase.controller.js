@@ -10,20 +10,31 @@ let _buyBook = async (req, res) => {
     if (!tokenStatus) {
         return res.status(401).send({ message: "You are not logged In, Do logIn first" })
     } else {
-        try{
-            let purchaseDetails  = await purchaseService._buyBook(req, res);
-             if(purchaseDetails){
+        try {
+            let purchaseDetails = await purchaseService._buyBook(req, res);
+            if (purchaseDetails) {
                 let updateBookStockCount = await bookService._updateBookStock(req.body.book_id);
-                (updateBookStockCount) ? res.status(200).send({message:"Book purchase sucessfully"}) : res.status(404).send({message:"Book Details is not found"})
-            }else{
-                res.status(400).send({message:"Purchase Details is not inserting"})
+
+                if (updateBookStockCount) {
+                    let stock_details = {
+                        _id: updateBookStockCount._id,
+                        stock_count: updateBookStockCount.stock_count - 1
+                    }
+                    res.status(200).send({ stock_details , message: "Book purchase sucessfully" })
+
+                } else {
+                    res.status(404).send({ message: "Book Details is not found" })
+                }
+
+            } else {
+                res.status(400).send({ message: "Purchase Details is not inserting" })
             }
-            
-        }catch(err){
+
+        } catch (err) {
             console.log(err);
-            res.status(400).send({message:"Something went wrong"})
+            res.status(400).send({ message: "Something went wrong" })
         }
-        
+
 
     }
 }
@@ -33,12 +44,12 @@ let _getPurchaseList = async (req, res) => {
     if (!tokenStatus) {
         return res.status(401).send({ message: "You are not logged In, Do logIn first" })
     } else {
-        try{
-            let purchaseList = await purchaseService._getPurchaseList(req,res);
-            (purchaseList) ? res.status(200).send({purchaseList,message:"Purchase List"}) : res.status(404).send({message:"No Purchase found"})
-        }catch(err){
+        try {
+            let purchaseList = await purchaseService._getPurchaseList(req, res);
+            (purchaseList) ? res.status(200).send({ purchaseList, message: "Purchase List" }) : res.status(404).send({ message: "No Purchase found" })
+        } catch (err) {
             console.log(err);
-            res.status(400).send({message:"Something went wrong"})
+            res.status(400).send({ message: "Something went wrong" })
         }
     }
 }

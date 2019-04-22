@@ -7,7 +7,7 @@ const dummyuser = async (req, res) => {
                 name:"Rahul",
                 email:"rahul@moodcafe.in",
                 password:"text",
-                role:"[ROLE_ADMIN]"
+                role:"ROLE_ADMIN"
             }
             let response = await userService.create(user,res);
          }catch(e) {

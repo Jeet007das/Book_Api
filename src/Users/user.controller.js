@@ -20,11 +20,7 @@ function authenticate(req, res, next) {
 }
 
 function register(req, res, next) {
-    console.log("Request body");
-    
-    console.log(req.body);
-    
-   userService.create(req.body)
+  userService.create(req.body)
         .then(() => res.status(201).json({status:201, message: "User created successfully"}))
         .catch(err => res.status(401).json({message:"Email id already exits"}));
 }
