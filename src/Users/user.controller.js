@@ -4,26 +4,37 @@ const userService = require('./user.service');
 
 // routes
 router.post('/login', authenticate);
+router.post('/logout',  logout);
 router.post('/register',  register);
-// router.get('/', getAll);
-// router.get('/current', getCurrent);
-// router.get('/:id', getById);
-// router.put('/:id', update);
-// router.delete('/:id', _delete);
+
+
 
 module.exports = router;
 
 function authenticate(req, res, next) {
+   console.log("inside authenticate");
    
     userService.authenticate(req.body)
         .then(user => user ? res.status(201).json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
-        .catch(err => next(err));
+        .catch(err => res.status(401).json({message:"Access denied"}));
 }
 
 function register(req, res, next) {
+    console.log("Request body");
+    
+    console.log(req.body);
+    
    userService.create(req.body)
         .then(() => res.status(201).json({status:201, message: "User created successfully"}))
-        .catch(err => next(err));
+        .catch(err => res.status(401).json({message:"Email id already exits"}));
+}
+
+function logout(req, res, next) {
+    userService.logout(req, res)
+        .then(() => res.status(200).json({status:200, message:"Logout done successfully"}))
+        .catch((err => {
+            res.status(401).json({status:401, message:"Problem in logging out"})
+        }));
 }
 
 // function getAll(req, res, next) {

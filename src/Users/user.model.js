@@ -25,6 +25,7 @@ var UserSchema = new Schema({
   },
   role:[{
     type:String,
+    default: "ROLE_USER"
   }],
   token:[{
     type:String 

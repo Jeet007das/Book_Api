@@ -6,6 +6,7 @@ const User = db.User;
 
 module.exports = {
     authenticate,
+    logout,
     // getAll,
     // getById,
     create,
@@ -14,6 +15,8 @@ module.exports = {
 };
 
 async function authenticate({ email, password }) {
+    console.log("inside service");
+    
     const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.password)) {
         const { password, token, ...userWithoutPassword } = user.toObject();
@@ -21,6 +24,9 @@ async function authenticate({ email, password }) {
         const updateUser = await User.findById(user.id);
         (user.token).push(web_token)
         Object.assign(updateUser, user);
+
+        console.log("token save");
+        
         updateUser.save();
         return {
             ...userWithoutPassword,
@@ -40,7 +46,8 @@ async function getById(id){
 }
 
 async function create(userParam) {
-
+    console.log(userParam);
+    
     if (await User.findOne({ email: userParam.email })) {
         throw new Error("Email is already taken");
     }
@@ -54,6 +61,14 @@ async function create(userParam) {
 
     // save user
     await user.save();
+    console.log("here user saved");
+    
+}
+
+
+async function logout(req,res){
+    
+
 }
 
 // async function update(id, userParam) {

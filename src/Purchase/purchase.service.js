@@ -8,6 +8,8 @@ var _ = require('lodash');
 module.exports = {
    
     _buyBook: async (req, res) => {
+        console.log(req.body);
+        
         let {user_email, book_id} = req.body;
      try{
             

@@ -6,6 +6,8 @@ const auth = require('../middleware/auth');
 
 
 let _getBooksLists = async(req, res, next) => {
+    console.log("getting book list");
+    
     try{
         let bookLists = []
         bookLists = await bookService._getBooksLists();
@@ -93,8 +95,6 @@ let _updateBookDetails = async(req,res) =>{
 
 
 let _deleteBookDetails = async(req, res) =>{
-    console.log("in delete controller");
-    
     const tokenStatus = await auth(req, res)
     if (!tokenStatus) {
         return res.status(401).send({ message: "You are not logged In, Do logIn first" })

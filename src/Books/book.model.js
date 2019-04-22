@@ -14,7 +14,6 @@ var BookSchema = new Schema({
   },
   author_name: {
     type: String,
-    required: true,
   },
   price:{
     type:Number,
@@ -30,7 +29,7 @@ var BookSchema = new Schema({
   },
   book_category:{
       type:String,
-      required:true
+      default:"No Category"
   },
   createdDate:{
     type:Date,

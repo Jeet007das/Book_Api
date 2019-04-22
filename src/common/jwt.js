@@ -9,6 +9,7 @@ function jwt() {
     return expressJwt({ secret, isRevoked }).unless({
         path: [
             '/users/login',
+            '/users/logout',
             '/users/register',
             '/books/_getBooksLists',
             '/books/_addNewBook',
