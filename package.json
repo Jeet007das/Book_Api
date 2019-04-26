@@ -15,9 +15,12 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
+    "jimp": "^0.6.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.11",
     "mongoose": "^5.5.2",
+    "ng-ocr": "^1.6.1",
+    "node-tesseract": "^0.2.7",
     "validator": "^10.11.0"
   }
 }
