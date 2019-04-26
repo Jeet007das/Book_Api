@@ -5,9 +5,10 @@ var bodyParser = require('body-parser');
 
 // const jwt = require('./src/common/jwt');
 // const dummyUser = require('./src/middleware/dummyuser');
-
+const sharp = require('sharp');
 var Ngocr = require("ng-ocr");
 var fs = require("fs");
+
 
 //parse data
 
@@ -30,13 +31,25 @@ app.use(cors());
 
 // console.log(tesseract.process(__dirname+'/src/images/1.png',(err, null))
 console.log('F:/Book_Project/Backend_Server/src/images/1.png'); 
+// let originalImage = 'F:/Book_Project/Backend_Server/src/images/2.png';
+
+// sharp(originalImage).extract({ width: 85, height: 58, left: 612, top: 520 }).toFile('F:/Book_Project/Backend_Server/src/images/cropImage.png')
+//     .then(function(new_file_info) {
+//         console.log(new_file_info);
+//         console.log("Image cropped and saved");
+//     })
+//     .catch(function(err) {
+//         console.log("An error occured");
+//     });
 
 
-Ngocr.decodeFile('F:/Book_Project/Backend_Server/src/images/total.png', function(error, data){
-    console.log(data); // Hello World!
-  });
+// Ngocr.decodeFile('F:/Book_Project/Backend_Server/src/images/2.png', function(error, data){
+//     console.log("inside");
+    
+//     console.log(data); // Hello World!
+//   });
 
-var buffer = fs.readFileSync('F:/Book_Project/Backend_Server/src/images/total.png');
+var buffer = fs.readFileSync('F:/Book_Project/Backend_Server/src/images/2.png');
 console.log(buffer);
 
 Ngocr.decodeBuffer(buffer, (error, data) => 
