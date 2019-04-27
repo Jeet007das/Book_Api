@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "image1":"tesseract D:/practice_project/Book_Project/Book_Api/src/images/1.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out1",
+    "image2":"tesseract D:/practice_project/Book_Project/Book_Api/src/images/2.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out2",
+    "image3":"tesseract D:/practice_project/Book_Project/Book_Api/src/images/3.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out3",
     "start":"tesseract D:/practice_project/Book_Project/Book_Api/src/images/1.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out1 && tesseract D:/practice_project/Book_Project/Book_Api/src/images/2.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out2 && tesseract D:/practice_project/Book_Project/Book_Api/src/images/3.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out3 && nodemon app.js"
   },
   "author": "",

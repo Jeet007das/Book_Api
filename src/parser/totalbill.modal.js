@@ -3,8 +3,12 @@ const Schema = mongoose.Schema;
 
 var TotalBillSchema = new Schema({
  totalAmount:{
-    type:String,
+    type:Number,
     required:true
+    },
+    date:{
+        type:Date,
+        default:Date.now  
     }
 });
 

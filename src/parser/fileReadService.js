@@ -4,7 +4,7 @@ var fs = require("fs");
 var billData = [];
 
 
-const fileReadService = (file_name , callback) => {
+async function fileReadService(file_name , callback){
     let textFile = "D:/practice_project/Book_Project/Book_Api/src/image_output_file/" +file_name;
      fs.readFile(textFile, function (err, bufferValue) {
         if (err) {
