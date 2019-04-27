@@ -4,7 +4,8 @@
   "description": "This is basically simple Book Store.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"tesseract D:/practice_project/Book_Project/Book_Api/src/images/1.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out1 && tesseract D:/practice_project/Book_Project/Book_Api/src/images/2.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out2 && tesseract D:/practice_project/Book_Project/Book_Api/src/images/3.png D:/practice_project/Book_Project/Book_Api/src/image_output_file/out3 && nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,13 +16,10 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
-    "jimp": "^0.6.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.11",
     "mongoose": "^5.5.2",
-    "ng-ocr": "^1.6.1",
-    "node-tesseract": "^0.2.7",
-    "sharp": "^0.22.1",
+    "tesseract.js": "^1.0.14",
     "validator": "^10.11.0"
   }
 }

@@ -3,11 +3,16 @@ const app = express();
 const cors = require('cors');
 var bodyParser = require('body-parser');
 
+
 // const jwt = require('./src/common/jwt');
 // const dummyUser = require('./src/middleware/dummyuser');
-const sharp = require('sharp');
-var Ngocr = require("ng-ocr");
+// const sharp = require('sharp');
+
 var fs = require("fs");
+const fileService = require('./src/parser/fileReadService');
+
+
+
 
 
 //parse data
@@ -30,46 +35,56 @@ app.use(cors());
 // app.use('/purchase', require('./src/Purchase/purchase.controller'));
 
 // console.log(tesseract.process(__dirname+'/src/images/1.png',(err, null))
-console.log('F:/Book_Project/Backend_Server/src/images/1.png'); 
-// let originalImage = 'F:/Book_Project/Backend_Server/src/images/2.png';
+console.log(__dirname+'/src/image_output_file'); 
 
-// sharp(originalImage).extract({ width: 85, height: 58, left: 612, top: 520 }).toFile('F:/Book_Project/Backend_Server/src/images/cropImage.png')
-//     .then(function(new_file_info) {
-//         console.log(new_file_info);
-//         console.log("Image cropped and saved");
-//     })
-//     .catch(function(err) {
-//         console.log("An error occured");
-//     });
+  checkFileInDirectory = async () => {
+   await fs.readdir(__dirname+'/src/image_output_file', (err, files) => {
+        if(err){
+            console.log("File directory not found");
+        }else{
+            if(files.length > 0){
+                let res = 0
+                for(fileName of files){
+                     fileService(fileName, (data, err) =>{
+                      if(err){
+                          console.log("cannot find value");
+                          
+                      }else{
+                          console.log(data);
+                          
+                      }
+                  });
+                }
+            }else{
+                console.log("You haven't file in your directory");
+            }
+           
+         }
+      });
+  }
 
 
-// Ngocr.decodeFile('F:/Book_Project/Backend_Server/src/images/2.png', function(error, data){
-//     console.log("inside");
-    
-//     console.log(data); // Hello World!
+// fs.readFile(textFile, function(err, buf) {
+//     console.log(buf);
+//     var billData = [];
+//     for(var temp in buf){
+//         billData.push(String.fromCharCode(buf[temp]));
+//   }
+//   //your 'loop' logic goes here, y = temperatures
+//   //console.log(billData);
+//   console.log("finding");
+  
+//   console.log(billData.indexOf('T'));
+   
 //   });
 
-var buffer = fs.readFileSync('F:/Book_Project/Backend_Server/src/images/2.png');
-console.log(buffer);
 
-Ngocr.decodeBuffer(buffer, (error, data) => 
-{
-    if(error){
-        console.log("inside error");
-        
-        console.log(error);
-        
-    }
-    else{
-        console.log(data); // Hello World!
-    }
- 
-});
+
 
 
 // start server
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 const server = app.listen(port, async () => {
-    // await dummyUser();
+     await checkFileInDirectory();
     console.log('Server listening on port ' + port);
 });
