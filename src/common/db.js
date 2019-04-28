@@ -8,8 +8,8 @@ mongoose.connect('mongodb://mocadmin:mocadmin@139.59.35.239:27017/admin', {useCr
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    User: require('../Users/user.model'),
-    Book: require('../Books/book.model'),
-    Purchase: require('../Purchase/purchase.model'),
+    // User: require('../Users/user.model'),
+    // Book: require('../Books/book.model'),
+    // Purchase: require('../Purchase/purchase.model'),
     Total:require('../parser/totalbill.modal')
 };
