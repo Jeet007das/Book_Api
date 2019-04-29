@@ -19,7 +19,7 @@ checkInFolder = async (files, call) => {
         for (fileName of files) {
             fileService(fileName, (data, err) => {
                 if (err) {
-                    call(null, "cannot find value")
+                    call("cannot find value", null)
                 } else {
                     res = res + data;
                 }
